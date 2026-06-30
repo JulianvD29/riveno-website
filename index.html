@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl" class="scroll-smooth">
 <head>
-    <!-- -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riveno Dakdekkers & Timmerwerken | Uw Dak Specialist in Amersfoort</title>
@@ -50,7 +49,7 @@
 </head>
 <body x-data="{ mobileMenuOpen: false, activeTab: 'all' }" class="bg-brand-light text-brand-textDark antialiased">
 
-    <!-- -->
+    <!-- HEADER / NAVIGATIE -->
     <header class="fixed top-0 left-0 right-0 bg-brand-dark/95 backdrop-blur-md text-white z-50 border-b border-slate-800 shadow-2xl transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20 md:h-24">
@@ -101,16 +100,18 @@
         </div>
     </header>
 
-    <!-- -->
+    <!-- HERO SECTION -->
     <section class="relative pt-32 pb-24 md:pt-48 md:pb-36 bg-brand-dark text-white overflow-hidden">
-        <!-- Visual Background & Dark Gradient Overlays -->
+        <!-- Visual Background & Dark Gradient Overlays (Look geïnspireerd op Jadakwerken met jouw foto) -->
         <div class="absolute inset-0 z-0">
-            <!-- Uses background image from the Riveno homepage (IMG_3701.jpg) with optimized layout overlay and fallback -->
-            <img src="IMG_3701.jpg" 
+            <!-- Achtergrondafbeelding ingesteld op jouw geüploade foto 1000108493.jpg met een Unsplash sfeer-fallback -->
+            <img src="1000108493.jpg" 
                  onerror="this.src='https://images.unsplash.com/photo-1635335833989-11ba10a56012?auto=format&fit=crop&q=80&w=1920'"
                  alt="Vakkundige daken en timmerwerken door Riveno" 
-                 class="w-full h-full object-cover opacity-20">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/95 to-transparent"></div>
+                 class="w-full h-full object-cover opacity-35">
+            <!-- Premium blauwe gradient overlay voor optimale tekstleesbaarheid -->
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/90 to-brand-dark/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
         </div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
@@ -124,7 +125,7 @@
                         Vakkundige <span class="text-brand-accent">Daken</span> & Hoogwaardig <span class="text-brand-accent">Timmerwerk</span>
                     </h1>
                     <p class="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed font-light">
-                        Heeft u te maken met stormschade, lekkage of bent u toe aan een volledige dakrenovatie? Riveno combineert jarenlange ervaring met gecertificeerde technieken en topkwaliteit materialen. Altijd inclusief <strong class="text-white text-semibold">minimaal 10 jaar garantie</strong> en een gratis dakinspectie vooraf.
+                        Heeft u te maken met stormschade, lekkage of bent u toe aan een volledige dakrenovatie? Riveno combineert jarenlange ervaring met gecertificeerde technieken en topkwaliteit materialen. Altijd inclusief <strong class="text-white font-semibold">minimaal 10 jaar garantie</strong> en een gratis dakinspectie vooraf.
                     </p>
                     
                     <!-- Core Trust points -->
@@ -190,7 +191,7 @@
         </div>
     </section>
 
-    <!-- -->
+    <!-- 3 KERN-USPS SECTION -->
     <section id="waarom-ons" class="relative -mt-12 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- USP 1: 24/7 bereikbaar -->
@@ -234,7 +235,7 @@
         </div>
     </section>
 
-    <!-- -->
+    <!-- ONZE DIENSTEN -->
     <section id="diensten" class="py-24 bg-brand-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -246,16 +247,16 @@
                 </p>
             </div>
 
-            <!-- Services Grid with Original Image file hooks -->
+            <!-- Services Grid with your newly uploaded images -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Service 1: Bitumen Daken -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-slate-100 flex flex-col justify-between">
                     <div>
                         <div class="h-56 relative overflow-hidden bg-slate-800">
-                            <!-- Local file on GitHub: Foto 18-04-2024, 11 39 31.jpg (with fallback helper) -->
-                            <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&q=80&w=800" 
-                                 onerror="this.src='Foto 18-04-2024, 11 39 31.jpg'"
+                            <!-- Ingesteld op jouw geüploade foto 1000108525.jpg -->
+                            <img src="1000108525.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&q=80&w=800'"
                                  alt="Bitumen Daken door Riveno" 
                                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                             <span class="absolute top-4 right-4 bg-brand-dark/80 text-white text-xs font-bold px-3 py-1.5 rounded-md backdrop-blur-sm">
@@ -280,9 +281,9 @@
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-slate-100 flex flex-col justify-between">
                     <div>
                         <div class="h-56 relative overflow-hidden bg-slate-800">
-                            <!-- Local file on GitHub: Foto 09-11-2023, 10 50 07.jpg (with fallback helper) -->
-                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800" 
-                                 onerror="this.src='Foto 09-11-2023, 10 50 07.jpg'"
+                            <!-- Ingesteld op jouw geüploade foto 1000108517.jpg -->
+                            <img src="1000108517.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800'"
                                  alt="Dakisolatie door Riveno" 
                                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                             <span class="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-md">
@@ -307,9 +308,9 @@
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-slate-100 flex flex-col justify-between">
                     <div>
                         <div class="h-56 relative overflow-hidden bg-slate-800">
-                            <!-- Local file on GitHub: IMG_5072.jpg (with fallback helper) -->
-                            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800" 
-                                 onerror="this.src='IMG_5072.jpg'"
+                            <!-- Ingesteld op jouw geüploade foto 1000108507.jpg -->
+                            <img src="1000108507.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800'"
                                  alt="Dakrenovatie door Riveno" 
                                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                             <span class="absolute top-4 right-4 bg-brand-dark/80 text-white text-xs font-bold px-3 py-1.5 rounded-md backdrop-blur-sm">
@@ -334,9 +335,9 @@
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-slate-100 flex flex-col justify-between">
                     <div>
                         <div class="h-56 relative overflow-hidden bg-slate-800">
-                            <!-- Local file on GitHub: IMG_5689.jpg (with fallback helper) -->
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" 
-                                 onerror="this.src='IMG_5689.jpg'"
+                            <!-- Ingesteld op jouw geüploade foto 1000108498.jpg -->
+                            <img src="1000108498.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800'"
                                  alt="Dakramen en lichtkoepels door Riveno" 
                                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                             <span class="absolute top-4 right-4 bg-brand-dark/80 text-white text-xs font-bold px-3 py-1.5 rounded-md backdrop-blur-sm">
@@ -361,9 +362,9 @@
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-slate-100 flex flex-col justify-between">
                     <div>
                         <div class="h-56 relative overflow-hidden bg-slate-800">
-                            <!-- Local file on GitHub: Foto 29-03-2024, 09 31 14.jpg (with fallback helper) -->
-                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" 
-                                 onerror="this.src='Foto 29-03-2024, 09 31 14.jpg'"
+                            <!-- Ingesteld op jouw geüploade foto 1000108511.jpg -->
+                            <img src="1000108511.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'"
                                  alt="Daklekkage verhelpen door Riveno" 
                                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                             <span class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-md">
@@ -391,9 +392,9 @@
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-slate-100 flex flex-col justify-between">
                     <div>
                         <div class="h-56 relative overflow-hidden bg-slate-800">
-                            <!-- Local file on GitHub: lood en zinkwerk.jpg (with fallback helper) -->
-                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800" 
-                                 onerror="this.src='lood en zinkwerk.jpg'"
+                            <!-- Ingesteld op jouw geüploade foto 1000108495.jpg -->
+                            <img src="1000108495.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800'"
                                  alt="Lood- en zinkwerk Riveno" 
                                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                             <span class="absolute top-4 right-4 bg-brand-dark/80 text-white text-xs font-bold px-3 py-1.5 rounded-md backdrop-blur-sm">
@@ -418,7 +419,7 @@
         </div>
     </section>
 
-    <!-- -->
+    <!-- OVER ONS -->
     <section id="over-ons" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -426,13 +427,20 @@
                 <!-- Left Column: Visual Stack representation -->
                 <div class="relative space-y-4">
                     <div class="rounded-3xl overflow-hidden shadow-2xl border border-slate-100">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200" 
+                        <!-- Ingesteld op jouw geüploade foto 1000108513.jpg -->
+                        <img src="1000108513.jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200'"
                              alt="Riveno Dakdekker in actie" 
                              class="w-full h-[450px] object-cover">
                     </div>
-                    <div class="absolute -bottom-6 -right-6 bg-brand-accent text-white p-6 rounded-2xl shadow-2xl max-w-xs hidden sm:block">
-                        <p class="text-xl font-black mb-1">Eerlijk & Betrokken</p>
-                        <p class="text-xs text-orange-100">Wij houden van korte lijntjes en streven altijd naar het allerbeste resultaat op uw dak.</p>
+                    <!-- Ingesteld op jouw geüploade foto 1000108481.jpg voor het absolute zwevende element -->
+                    <div class="absolute -bottom-6 -right-6 bg-brand-accent text-white p-6 rounded-2xl shadow-2xl max-w-xs hidden sm:block border border-orange-500/20">
+                        <img src="1000108481.jpg" 
+                             onerror="this.style.display='none'"
+                             alt="Riveno detail" 
+                             class="w-16 h-16 rounded-xl object-cover mb-3 mx-auto border-2 border-white/50 shadow-inner">
+                        <p class="text-lg font-black mb-1 text-center">Eerlijk & Betrokken</p>
+                        <p class="text-xs text-orange-100 text-center">Wij houden van korte lijntjes en streven altijd naar het beste resultaat.</p>
                     </div>
                 </div>
 
@@ -467,7 +475,7 @@
         </div>
     </section>
 
-    <!-- -->
+    <!-- CALCULATOR -->
     <section class="py-20 bg-brand-dark text-white relative" x-data="{ roofSize: 45, roofType: 'bitumen', getEstimatedPrice() { 
         let base = this.roofType === 'bitumen' ? 70 : this.roofType === 'renovatie' ? 105 : 55;
         return this.roofSize * base;
@@ -524,7 +532,7 @@
         </div>
     </section>
 
-    <!-- -->
+    <!-- FAQS -->
     <section class="py-24 bg-brand-light" x-data="{ activeFaq: null }">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -570,7 +578,7 @@
         </div>
     </section>
 
-    <!-- -->
+    <!-- CONTACT & FORM -->
     <section id="offerte" class="py-24 bg-brand-dark text-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -683,7 +691,7 @@
         </div>
     </section>
 
-    <!-- -->
+    <!-- FOOTER -->
     <footer class="bg-brand-dark text-slate-500 py-16 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left mb-12">
