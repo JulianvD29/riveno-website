@@ -6,7 +6,7 @@
     <title>Riveno | Uw Professionele Dakdekker & Timmerman in Amersfoort</title>
     <meta name="description" content="Van acute daklekkage, bitumen daken, dakisolatie tot complete dakrenovatie en timmerwerk. Riveno levert betrouwbaar vakmanschap en 10 jaar garantie in regio Amersfoort. Vraag direct een gratis inspectie aan!">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Google Fonts & Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -15,13 +15,13 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#0B1329',
-                            card: '#1C2541',
-                            accent: '#FF7A00',
-                            accentHover: '#E66E00',
-                            light: '#F4F6F9',
-                            textDark: '#1E293B',
-                            textLight: '#94A3B8'
+                            dark: '#0B1329',       // Premium diep donkerblauw (Jadakwerken style)
+                            card: '#1C2541',       // Iets lichtere card achtergrond
+                            accent: '#FF7A00',     // Signaaloranje voor conversie
+                            accentHover: '#E66E00',// Donkeroranje voor hovers
+                            light: '#F4F6F9',      // Lichtgrijze achtergronden
+                            textDark: '#1E293B',   // Donkere body tekst
+                            textLight: '#94A3B8'   // Lichte body tekst
                         }
                     },
                     fontFamily: {
@@ -37,12 +37,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Wix dubbele scrollbalk voorkoming en algemene styling */
+        /* Ultiem agressieve reset om ALLE WordPress admin-bars en themerandjes op mobiel te vernietigen */
         html, body {
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
+            overflow-x: hidden !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            top: 0 !important;
             width: 100%;
+        }
+        /* Override WordPress en Gutenberg container marges die de header naar beneden duwen */
+        .wp-site-blocks, #page, .wp-block-group, .site-header, #wpadminbar, html body.admin-bar {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            top: 0 !important;
+        }
+        /* Override Gutenberg block-gap top margins op ons HTML-blok die op mobiel voor een witregel zorgen */
+        .wp-site-blocks > *,
+        .is-layout-flow > *,
+        .is-layout-constrained > *,
+        .wp-block-custom-html {
+            margin-top: 0 !important;
+            margin-block-start: 0 !important;
+            padding-top: 0 !important;
+        }
+        /* Forceer de vaste header strak tegen de absolute bovenkant van het scherm */
+        header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 99999 !important;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -52,13 +78,13 @@
         }
     </style>
 </head>
-<body x-data="{ mobileMenuOpen: false }" class="bg-brand-light text-brand-textDark antialiased">
+<body x-data="{ mobileMenuOpen: false, roofSize: 45, roofType: 'bitumen', formService: '' }" class="bg-brand-light text-brand-textDark antialiased">
 
     <!-- STICKY HEADER -->
     <header class="fixed top-0 left-0 right-0 bg-brand-dark text-white z-50 border-b border-neutral-900 shadow-xl transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-24 md:h-28">
-                <!-- Brand Logo (Exacte vector-recreatie van jouw 1000109215.jpg logo) -->
+                <!-- Brand Logo (Exacte vector-recreatie van jouw logo) -->
                 <div class="flex-shrink-0 flex items-center py-2">
                     <a href="#" class="flex items-center" aria-label="Riveno Homepage">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" class="h-16 md:h-20 w-auto">
@@ -107,9 +133,9 @@
                     <a href="#diensten" class="hover:text-brand-accent transition duration-200">Diensten</a>
                     <a href="#over-ons" class="hover:text-brand-accent transition duration-200">Over Riveno</a>
                     <a href="#offerte" class="hover:text-brand-accent transition duration-200">Gratis Inspectie</a>
-                    <a href="tel:0640503473" class="bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-lg shadow-brand-accent/25 hover:scale-105">
+                    <a href="tel:0641026038" class="bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-lg shadow-brand-accent/25 hover:scale-105">
                         <i class="fa-solid fa-phone-volume animate-pulse"></i>
-                        Spoed? 06 40 50 34 73
+                        Spoed? 06 41 02 60 38
                     </a>
                 </nav>
 
@@ -127,9 +153,10 @@
             <a @click="mobileMenuOpen = false" href="#" class="block px-4 py-3 rounded-md text-base font-bold hover:bg-slate-800 hover:text-brand-accent transition">Home</a>
             <a @click="mobileMenuOpen = false" href="#waarom-ons" class="block px-4 py-3 rounded-md text-base font-bold hover:bg-slate-800 hover:text-brand-accent transition">Onze Beloftes</a>
             <a @click="mobileMenuOpen = false" href="#diensten" class="block px-4 py-3 rounded-md text-base font-bold hover:bg-slate-800 hover:text-brand-accent transition">Diensten</a>
+            <a @click="mobileMenuOpen = false" href="#over-ons" class="block px-4 py-3 rounded-md text-base font-bold hover:bg-slate-800 hover:text-brand-accent transition">Over Riveno</a>
             <a @click="mobileMenuOpen = false" href="#offerte" class="block px-4 py-3 rounded-md text-base font-bold hover:bg-slate-800 hover:text-brand-accent transition">Gratis Inspectie</a>
-            <a href="tel:0640503473" class="block text-center bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-4 rounded-lg font-bold transition duration-200 shadow-md">
-                <i class="fa-solid fa-phone-volume mr-2"></i> Bel Direct: 06 40 50 34 73
+            <a href="tel:0641026038" class="block text-center bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-4 rounded-lg font-bold transition duration-200 shadow-md">
+                <i class="fa-solid fa-phone-volume mr-2"></i> Bel Direct: 06 41 02 60 38
             </a>
         </div>
     </header>
@@ -137,8 +164,8 @@
     <!-- HERO SECTION -->
     <section class="relative pt-36 pb-24 md:pt-48 md:pb-36 bg-brand-dark text-white overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- Projectfoto 1000108493.jpg geactiveerd -->
-            <img src="1000108493.jpg" 
+            <!-- Projectfoto direct geladen van GitHub -->
+            <img src="https://julianvd29.github.io/riveno-website/1000108493.jpg" 
                  onerror="this.src='https://images.unsplash.com/photo-1635335833989-11ba10a56012?auto=format&fit=crop&q=80&w=1920'" 
                  alt="Vakkundige daken & Hoogwaardig timmerwerk door Riveno" 
                  class="w-full h-full object-cover opacity-20">
@@ -148,22 +175,22 @@
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 space-y-6">
-                    <span class="inline-flex items-center gap-2 py-2 px-4 rounded-full text-xs font-bold bg-brand-accent/20 text-brand-accent border border-brand-accent/40 uppercase tracking-widest animate-pulse">
+                    <span class="inline-flex items-center gap-2 py-2 px-4 rounded-full text-xs font-bold bg-brand-accent/20 text-brand-accent border border-brand-accent/40 uppercase tracking-widest">
                         <i class="fa-solid fa-bolt"></i> Binnen 24 uur een inspecteur op uw dak
                     </span>
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
                         Vakkundige daken & <span class="text-brand-accent">Hoogwaardig timmerwerk</span>
                     </h1>
                     <p class="text-lg md:text-xl text-slate-300 leading-relaxed font-light">
-                        Zoekt u een betrouwbare vakman voor uw dak of houtwerk? Riveno combineert authentiek timmerwerk met gecertificeerde daktechnieken. Altijd inclusief <strong class="text-white">minimaal 10 jaar garantie</strong> en een vaste, eerlijke prijsafspraak vooraf.
+                        Zoekt u een betrouwbare vakman voor uw dak of houtwerk? Riveno combineert authentiek timmerwerk met gecertificeerde daktechnieken. Altijd inclusief <strong class="text-white">minimaal 10 jaar garantie</strong> and een vaste, eerlijke prijsafspraak vooraf.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4 pt-6">
                         <a href="#offerte" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-base font-bold rounded-xl text-white bg-brand-accent hover:bg-brand-accentHover transition-all duration-300 shadow-xl shadow-brand-accent/30 hover:scale-105">
                             Gratis Dakinspectie Aanvragen
                         </a>
-                        <a href="tel:0640503473" class="inline-flex justify-center items-center px-8 py-4 border-2 border-white/20 text-base font-bold rounded-xl text-white hover:bg-white/10 transition duration-300">
-                            <i class="fa-solid fa-phone mr-2 text-brand-accent"></i> Direct Bellen: 06 40 50 34 73
+                        <a href="tel:0641026038" class="inline-flex justify-center items-center px-8 py-4 border-2 border-white/20 text-base font-bold rounded-xl text-white hover:bg-white/10 transition duration-300">
+                            <i class="fa-solid fa-phone mr-2 text-brand-accent"></i> Direct Bellen: 06 41 02 60 38
                         </a>
                     </div>
                 </div>
@@ -181,7 +208,7 @@
                         <p class="text-sm text-slate-300 mb-6">
                             Bij actieve stormschade of een lekkage komen wij direct in actie.
                         </p>
-                        <a href="tel:0640503473" class="block text-center bg-transparent border-2 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white font-bold py-3 px-4 rounded-xl transition duration-300">
+                        <a href="tel:0641026038" class="block text-center bg-transparent border-2 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white font-bold py-3 px-4 rounded-xl transition duration-300">
                             Meld Nu Uw Dakprobleem
                         </a>
                     </div>
@@ -211,7 +238,7 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-brand-dark mb-1">Vrijblijvend Advies</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Geen onverwachte verrassingen. Wij komen gratis langs voor een dakinspectie en een heldere offerte op maat.</p>
+                    <p class="text-slate-600 text-sm leading-relaxed">Geen onverwachte verrassingen. Wij komen gratis langs voor een dakinspectie and een heldere offerte op maat.</p>
                 </div>
             </div>
 
@@ -234,82 +261,82 @@
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-dark mb-4">Onze Diensten & Expertises</h2>
                 <div class="w-20 h-1.5 bg-brand-accent mx-auto mb-6 rounded-full"></div>
-                <p class="text-lg text-slate-600">Of het nu gaat om bitumen, isolatie of houtrot: Riveno staat garant voor betrouwbaar en gecertificeerd vakmanschap.</p>
+                <p class="text-lg text-slate-600">Of het nu gaat om bitumen, isolatie of houtrot: Riveno staat garant voor betrouwbaar and gecertificeerd vakmanschap.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Dienst 1 -->
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 border border-slate-100">
                     <div class="h-48 overflow-hidden bg-slate-200">
-                        <img src="1000109219.jpg" onerror="this.src='https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&q=80&w=600'" alt="Bitumen Daken" class="w-full h-full object-cover">
+                        <img src="https://julianvd29.github.io/riveno-website/1000109219.jpg" onerror="this.src='https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&q=80&w=600'" alt="Bitumen Daken" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brand-dark mb-3">Bitumen Daken (Dakleer)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Onze bitumen daken zijn ijzersterk, 100% waterdicht en uitstekend geschikt voor platte daken van uitbouwen, garages of dakkapellen.</p>
-                        <a href="#offerte" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Onze bitumen daken zijn ijzersterk, 100% waterdicht and uitstekend geschikt for platte daken van uitbouwen, garages of dakkapellen.</p>
+                        <a href="#offerte" @click="formService = 'bitumen'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Dienst 2 -->
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 border border-slate-100">
                     <div class="h-48 overflow-hidden bg-slate-200">
-                        <img src="1000109217.jpg" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=600'" alt="Dakisolatie" class="w-full h-full object-cover">
+                        <img src="https://julianvd29.github.io/riveno-website/1000109217.jpg" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=600'" alt="Dakisolatie" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brand-dark mb-3">Dakisolatie</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Verlaag direct uw energierekening en verhoog uw comfort. Wij isoleren platte en hellende daken vakkundig met hoogwaardige PIR- of minerale wol-platen.</p>
-                        <a href="#offerte" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Verlaag direct uw energierekening and verhoog uw comfort. Wij isoleren platte and hellende daken vakkundig met hoogwaardige PIR- of minerale wol-platen.</p>
+                        <a href="#offerte" @click="formService = 'isolatie'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Dienst 3 -->
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 border border-slate-100">
                     <div class="h-48 overflow-hidden bg-slate-200">
-                        <img src="1000109220.jpg" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600'" alt="Dakrenovatie" class="w-full h-full object-cover">
+                        <img src="https://julianvd29.github.io/riveno-website/1000109220.jpg" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600'" alt="Dakrenovatie" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brand-dark mb-3">Dakrenovatie (Pannendak)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Is uw hellende dak verouderd? Wij vervangen panlatten, tengels en leggen moderne, tochtvrije dakpannen die uw huis decennialang beschermen.</p>
-                        <a href="#offerte" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Is uw hellende dak verouderd? Wij vervangen panlatten, tengels and leggen moderne, tochtvrije dakpannen die uw huis decennialang beschermen.</p>
+                        <a href="#offerte" @click="formService = 'renovatie'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Dienst 4 -->
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 border border-slate-100">
                     <div class="h-48 overflow-hidden bg-slate-200">
-                        <img src="1000108498.jpg" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=600'" alt="Dakramen en lichtkoepels" class="w-full h-full object-cover">
+                        <img src="https://julianvd29.github.io/riveno-website/1000110682.jpg" onerror="this.src='1000110682.jpg'" alt="Dakramen en lichtkoepels" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-brand-dark mb-3">Dakramen & Lichtkoepels</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Breng natuurlijk daglicht uw woning binnen. Wij zorgen voor een vakkundige, tochtvrije en gegarandeerd waterdichte montage of vervanging van uw dakramen.</p>
-                        <a href="#offerte" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <h3 class="text-xl font-bold text-brand-dark mb-3">Dakramen &amp; Lichtkoepels</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Breng natuurlijk daglicht uw woning binnen. Wij zorgen voor een vakkundige, tochtvrije and gegarandeerd waterdichte montage of vervanging van uw dakramen.</p>
+                        <a href="#offerte" @click="formService = 'ramen'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Dienst 5 -->
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 border border-slate-100">
                     <div class="h-48 overflow-hidden bg-slate-200">
-                        <img src="1000109216.jpg" onerror="this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=600'" alt="Daklekkage" class="w-full h-full object-cover">
+                        <img src="https://julianvd29.github.io/riveno-website/1000109216.jpg" onerror="this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=600'" alt="Daklekkage" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-red-600 mb-3 flex items-center gap-2">
                             <span class="inline-block w-2.5 h-2.5 bg-red-600 rounded-full animate-ping"></span>
                             Daklekkage Opsporen & Spoed
                         </h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Vochtplekken op het plafond? Onze experts sporen de exacte oorzaak direct op met professionele apparatuur en herstellen het lek direct.</p>
-                        <a href="tel:0640503473" class="text-red-600 font-bold hover:text-red-700 text-sm">Meld direct lekkage &rarr;</a>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Vochtplekken op het plafond? Onze experts sporen de exacte oorzaak direct op met professionele apparatuur and herstellen het lek direct.</p>
+                        <a href="tel:0641026038" class="text-red-600 font-bold hover:text-red-700 text-sm">Meld direct lekkage &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Dienst 6 -->
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 border border-slate-100">
                     <div class="h-48 overflow-hidden bg-slate-200">
-                        <img src="1000109218.jpg" onerror="this.src='https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600'" alt="Timmerwerk" class="w-full h-full object-cover">
+                        <img src="https://julianvd29.github.io/riveno-website/1000109218.jpg" onerror="this.src='https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600'" alt="Timmerwerk" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brand-dark mb-3">Timmerwerk</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Als ervaren timmermannen herstellen wij aangetast dakbeschot, boeidelen, dakkapellen en leveren we hoogwaardig houtwerk op maat.</p>
-                        <a href="#offerte" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">Als ervaren timmermannen herstellen wij aangetast dakbeschot, boeidelen, dakkapellen and leveren we hoogwaardig houtwerk op maat.</p>
+                        <a href="#offerte" @click="formService = 'timmeren'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -322,11 +349,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="relative">
                     <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
-                        <img src="1000108513.jpg" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200'" alt="Riveno Dakdekkers aan het werk" class="w-full h-[450px] object-cover">
+                        <img src="https://julianvd29.github.io/riveno-website/1000108513.jpg" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200'" alt="Riveno Dakdekkers aan het werk" class="w-full h-[450px] object-cover">
                     </div>
                     <div class="absolute -bottom-6 -right-6 bg-brand-accent text-white p-6 rounded-2xl shadow-2xl max-w-xs hidden sm:block">
                         <p class="text-xl font-bold mb-1">Eerlijk & Betrokken</p>
-                        <p class="text-xs text-orange-100">Als hecht team hechten wij waarde aan heldere communicatie en duurzame resultaten.</p>
+                        <p class="text-xs text-orange-100">Als hecht team hechten wij waarde aan heldere communicatie and duurzame resultaten.</p>
                     </div>
                 </div>
 
@@ -338,7 +365,7 @@
                         Bent u op zoek naar een deskundige timmerman of gecertificeerd dakdekker in de regio Amersfoort? Bij <strong>Riveno Timmer- & Dakwerken</strong> combineren we authentiek vakmanschap met de allernieuwste daktechnieken. Of het nu gaat om een modern bitumen dak op uw dakkapel, grondige dakisolatie of direct houtherstel bij lekkage: wij leveren kwaliteit waarop u kunt bouwen.
                     </p>
                     <p class="text-slate-600 leading-relaxed text-sm">
-                        Als klein, betrokken en vakkundig team houden we van korte lijntjes. We denken actief met u mee vanaf het eerste contact tot de bezemvrije oplevering van uw project. Wij adviseren eerlijk en transparant over de conditie van uw panlatten en dakpannen, en vermijden onnodig dure vervangingen. Dat is onze belofte!
+                        Als klein, betrokken and vakkundig team houden we van korte lijntjes. We denken actief met u mee vanaf het eerste contact tot de bezemvrije oplevering van uw project. Wij adviseren eerlijk and transparant over de conditie van uw panlatten and dakpannen, and vermijden onnodig dure vervangingen. Dat is onze belofte!
                     </p>
                     
                     <div class="grid grid-cols-2 gap-4 pt-4">
@@ -357,10 +384,7 @@
     </section>
 
     <!-- INTERACTIVE ESTIMATE CALCULATOR -->
-    <section class="py-20 bg-brand-dark text-white relative" x-data="{ roofSize: 45, roofType: 'bitumen', getEstimatedPrice() { 
-        let base = this.roofType === 'bitumen' ? 65 : this.roofType === 'renovatie' ? 95 : 45;
-        return this.roofSize * base;
-    }}">
+    <section class="py-20 bg-brand-dark text-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-4xl mx-auto bg-brand-card border border-slate-700/55 rounded-3xl p-8 sm:p-12 shadow-2xl">
                 <div class="text-center mb-8">
@@ -397,13 +421,13 @@
                     <div class="bg-brand-dark/60 p-6 rounded-2xl border border-slate-700 text-center">
                         <span class="text-xs text-slate-400 uppercase tracking-widest block mb-1">Schatting Richtprijs</span>
                         <div class="text-4xl sm:text-5xl font-black text-brand-accent mb-2">
-                            €<span x-text="getEstimatedPrice().toLocaleString('nl-NL')"></span>,-
+                            €<span x-text="(roofSize * (roofType === 'bitumen' ? 65 : roofType === 'renovatie' ? 95 : 45)).toLocaleString('nl-NL')"></span>,-
                         </div>
                         <p class="text-[11px] text-slate-400 leading-relaxed mb-6">
                             *Exclusief eventuele subsidies, steigers, of herstel van houtrot. Richtprijs incl. btw & materialen.
                         </p>
-                        <a href="#offerte" class="block w-full text-center bg-brand-accent hover:bg-brand-accentHover text-white font-bold py-3.5 px-4 rounded-xl transition duration-300 uppercase tracking-wider text-xs">
-                            Leg Dit Tarief Vast &rarr;
+                        <a href="#offerte" @click="formService = roofType" class="block w-full text-center bg-brand-accent hover:bg-brand-accentHover text-white font-bold py-3.5 px-4 rounded-xl transition duration-300 uppercase tracking-wider text-xs">
+                            VRAAG OFFERTE AAN &rarr;
                         </a>
                     </div>
                 </div>
@@ -428,7 +452,7 @@
                         <i class="fa-solid" :class="activeFaq === 1 ? 'fa-minus text-brand-accent' : 'fa-plus text-slate-400'"></i>
                     </button>
                     <div x-show="activeFaq === 1" class="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-50 pt-4">
-                        Wij staan 100% achter onze kwaliteit. Op alle nieuwe bitumen daken, dakisolatie en complete dakrenovaties leveren wij standaard een waterdichte kwaliteitsgarantie van minimaal 10 jaar. De KOMO-gecertificeerde materialen gaan bij juist onderhoud vaak wel 25 tot 30 jaar mee.
+                        Wij staan 100% achter onze kwaliteit. Op alle nieuwe bitumen daken, dakisolatie and complete dakrenovaties leveren wij standaard een waterdichte kwaliteitsgarantie van minimaal 10 jaar. De KOMO-gecertificeerde materialen gaan bij juist onderhoud vaak wel 25 tot 30 jaar mee.
                     </div>
                 </div>
 
@@ -439,7 +463,7 @@
                         <i class="fa-solid" :class="activeFaq === 2 ? 'fa-minus text-brand-accent' : 'fa-plus text-slate-400'"></i>
                     </button>
                     <div x-show="activeFaq === 2" class="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-50 pt-4">
-                        Ja! Wij rekenen geen voorrijkosten of inspectiekosten voor particulieren in Midden-Nederland. Onze inspecteur komt vrijblijvend de conditie van uw dakbekleding, hout en aansluitingen bekijken. U ontvangt aansluitend een overzichtelijke offerte zonder verborgen kosten.
+                        Ja! Wij rekenen geen voorrijkosten of inspectiekosten voor particulieren in Midden-Nederland. Onze inspecteur komt vrijblijvend de conditie van uw dakbekleding, hout and aansluitingen bekijken. U ontvangt aansluitend een overzichtelijke offerte zonder verborgen kosten.
                     </div>
                 </div>
 
@@ -450,7 +474,7 @@
                         <i class="fa-solid" :class="activeFaq === 3 ? 'fa-minus text-brand-accent' : 'fa-plus text-slate-400'"></i>
                     </button>
                     <div x-show="activeFaq === 3" class="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-50 pt-4">
-                        Voor acute stormschades en serieuze lekkages hanteren wij een 24/7 spoedregeling in onze regio. We proberen altijd binnen 24 uur (en vaak al binnen enkele uren) een ervaren vakman bij u op het dak te hebben om verdere binnenschade direct in te dammen.
+                        Voor acute stormschades and serieuze lekkages hanteren wij een 24/7 spoedregeling in onze regio. We proberen altijd binnen 24 uur (en vaak al binnen enkele uren) een ervaren vakman bij u op het dak te hebben om verdere binnenschade direct in te dammen.
                     </div>
                 </div>
             </div>
@@ -469,7 +493,7 @@
                         <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Neem Vandaag Nog Contact Op</h2>
                         <div class="w-12 h-1 bg-brand-accent mt-4 rounded-full"></div>
                         <p class="text-slate-300 mt-6 leading-relaxed text-sm">
-                            Heeft u vragen of wilt u een afspraak maken for een gratis dakinspectie en een vrijblijvende offerte op maat? Ons team staat voor u klaar.
+                            Heeft u vragen of wilt u een afspraak maken voor een gratis dakinspectie and een vrijblijvende offerte op maat? Ons team staat voor u klaar.
                         </p>
                     </div>
 
@@ -480,7 +504,7 @@
                             </div>
                             <div>
                                 <span class="block text-xs text-slate-400 uppercase tracking-wider">Telefoonnummer</span>
-                                <a href="tel:0640503473" class="text-xl font-bold hover:text-brand-accent transition text-white">06 40 50 34 73</a>
+                                <a href="tel:0641026038" class="text-xl font-bold hover:text-brand-accent transition text-white">06 41 02 60 38</a>
                             </div>
                         </div>
 
@@ -490,7 +514,7 @@
                             </div>
                             <div>
                                 <span class="block text-xs text-slate-400 uppercase tracking-wider">E-mailadres</span>
-                                <a href="mailto:info@riveno.nl" class="text-xl font-bold hover:text-brand-accent transition text-white">info@riveno.nl</a>
+                                <a href="mailto:info.riveno@gmail.com" class="text-xl font-bold hover:text-brand-accent transition text-white">info.riveno@gmail.com</a>
                             </div>
                         </div>
 
@@ -515,11 +539,11 @@
                         <p class="font-bold text-lg mb-1 flex items-center gap-2">
                             <i class="fa-solid fa-circle-check text-xl"></i> Aanvraag Ontvangen!
                         </p>
-                        <p class="text-xs">Bedankt. Wij nemen binnen 1 werkdag telefonisch contact met u op.</p>
+                        <p class="text-sm font-semibold">Bedankt, wij nemen zo snel mogelijk contact met u op.</p>
                     </div>
 
-                    <!-- Contact Formulier -->
-                    <form x-show="!formSubmitted" @submit.prevent="formSubmitted = true" class="space-y-5">
+                    <!-- Contact Formulier met extra HTML5-validatie check voor AlpineJS -->
+                    <form x-show="!formSubmitted" @submit.prevent="if ($event.target.checkValidity()) { formSubmitted = true; } else { $event.target.reportValidity(); }" class="space-y-5">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">Uw Naam *</label>
@@ -536,7 +560,7 @@
                         </div>
                         <div>
                             <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">Gewenste Dienst *</label>
-                            <select required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
+                            <select x-model="formService" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
                                 <option value="">Kies uw dak- of timmerklus...</option>
                                 <option value="bitumen">Bitumen Daken (Dakleer)</option>
                                 <option value="isolatie">Dakisolatie</option>
@@ -602,7 +626,7 @@
                         <text x="250" y="225" font-family="'Montserrat', sans-serif" font-weight="700" font-size="18" fill="#FF7A00" text-anchor="middle" letter-spacing="9">DAK- &amp; TIMMERWERKEN</text>
                     </svg>
                     <p class="text-xs text-slate-400 mt-4 font-light text-center md:text-left">
-                        Vakkundig, betrouwbaar en snel op uw dak in Amersfoort en omliggende regio.
+                        Vakkundig, betrouwbaar and snel op uw dak in Amersfoort en omliggende regio.
                     </p>
                 </div>
                 <div class="flex justify-center space-x-6 text-sm">
@@ -620,10 +644,32 @@
     <!-- FLOATING ACTIONS (WhatsApp) -->
     <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-40">
         <!-- WhatsApp Emergency Widget -->
-        <a href="https://wa.me/31640503473" target="_blank" rel="noopener" class="bg-emerald-500 hover:bg-emerald-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110" title="Stuur een WhatsApp bericht">
+        <a href="https://wa.me/31641026038" target="_blank" rel="noopener" class="bg-emerald-500 hover:bg-emerald-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110" title="Stuur een WhatsApp bericht">
             <i class="fa-brands fa-whatsapp text-2xl"></i>
         </a>
     </div>
+
+    <!-- Onbreekbare Javascript Reset voor top-ruimte -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.documentElement.style.setProperty('margin-top', '0px', 'important');
+            document.documentElement.style.setProperty('padding-top', '0px', 'important');
+            document.body.style.setProperty('margin-top', '0px', 'important');
+            document.body.style.setProperty('padding-top', '0px', 'important');
+
+            // Voorkom dat tel: en mailto: links gehijackt worden door WordPress-plugins die target="_blank" forceren
+            document.addEventListener('click', function(e) {
+                const anchor = e.target.closest('a');
+                if (anchor) {
+                    const href = anchor.getAttribute('href');
+                    if (href && (href.startsWith('tel:') || href.startsWith('mailto:'))) {
+                        e.preventDefault();
+                        window.location.href = href;
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
