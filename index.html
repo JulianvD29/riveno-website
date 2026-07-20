@@ -76,6 +76,15 @@
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
         }
+        /* Krachtige extra padding om de inhoud perfect onder de gefixeerde header te drukken */
+        .hero-section-padding {
+            padding-top: 170px !important;
+        }
+        @media (min-width: 768px) {
+            .hero-section-padding {
+                padding-top: 240px !important;
+            }
+        }
     </style>
 </head>
 <body x-data="{ mobileMenuOpen: false, roofSize: 45, roofType: 'bitumen', formService: '' }" class="bg-brand-light text-brand-textDark antialiased">
@@ -162,7 +171,7 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section class="relative pt-36 pb-24 md:pt-48 md:pb-36 bg-brand-dark text-white overflow-hidden">
+    <section class="relative hero-section-padding pb-24 md:pb-36 bg-brand-dark text-white overflow-hidden">
         <div class="absolute inset-0 z-0">
             <!-- Projectfoto direct geladen van GitHub -->
             <img src="https://julianvd29.github.io/riveno-website/1000108493.jpg" 
@@ -531,7 +540,7 @@
                 </div>
 
                 <!-- Rechts: Contactformulier -->
-                <div x-data="{ formSubmitted: false }" class="bg-brand-card/90 border border-slate-700/60 p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-md">
+                <div x-data="{ formSubmitted: false, submitting: false, errorMessage: '', formService: '' }" class="bg-brand-card/90 border border-slate-700/60 p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-md">
                     <h3 class="text-2xl font-bold mb-6">Gratis Offerte Aanvragen</h3>
                     
                     <!-- Succesmelding -->
@@ -542,25 +551,62 @@
                         <p class="text-sm font-semibold">Bedankt, wij nemen zo snel mogelijk contact met u op.</p>
                     </div>
 
-                    <!-- Contact Formulier met extra HTML5-validatie check voor AlpineJS -->
-                    <form x-show="!formSubmitted" @submit.prevent="if ($event.target.checkValidity()) { formSubmitted = true; } else { $event.target.reportValidity(); }" class="space-y-5">
+                    <!-- Foutmelding -->
+                    <div x-show="errorMessage" x-transition class="bg-red-500/10 border border-red-500 text-red-400 p-4 rounded-xl text-sm mb-6" x-text="errorMessage"></div>
+
+                    <!-- Contact Formulier met AJAX / Web3Forms Integratie -->
+                    <form x-show="!formSubmitted" 
+                          @submit.prevent="
+                              if ($event.target.checkValidity()) { 
+                                  submitting = true; 
+                                  errorMessage = '';
+                                  const formData = new FormData($el);
+                                  fetch('https://api.web3forms.com/submit', {
+                                      method: 'POST',
+                                      body: formData
+                                  })
+                                  .then(res => res.json())
+                                  .then(data => {
+                                      submitting = false;
+                                      if (data.success) {
+                                          formSubmitted = true;
+                                      } else {
+                                          errorMessage = 'Er is een fout opgetreden: ' + (data.message || 'Probeer het later nog eens.');
+                                      }
+                                  })
+                                  .catch(err => {
+                                      submitting = false;
+                                      errorMessage = 'Netwerkfout. Controleer uw verbinding en probeer het opnieuw.';
+                                  });
+                              } else { 
+                                  $event.target.reportValidity(); 
+                              }
+                          " 
+                          class="space-y-5">
+                        
+                        <!-- Web3Forms Config & API Key -->
+                        <input type="hidden" name="access_key" value="2b413a75-4e03-47e9-9a24-012e6af7132b">
+                        <input type="hidden" name="subject" value="Nieuwe offerte aanvraag vanaf Riveno.nl">
+                        <input type="hidden" name="from_name" value="Riveno Website">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">Uw Naam *</label>
-                                <input type="text" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
+                                <input type="text" name="name" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
                             </div>
                             <div>
                                 <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">Telefoonnummer *</label>
-                                <input type="tel" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
+                                <input type="tel" name="phone" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
                             </div>
                         </div>
                         <div>
                             <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">E-mailadres *</label>
-                            <input type="email" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
+                            <input type="email" name="email" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
                         </div>
                         <div>
                             <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">Gewenste Dienst *</label>
-                            <select x-model="formService" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
+                            <select name="service" x-model="formService" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm">
                                 <option value="">Kies uw dak- of timmerklus...</option>
                                 <option value="bitumen">Bitumen Daken (Dakleer)</option>
                                 <option value="isolatie">Dakisolatie</option>
@@ -572,10 +618,15 @@
                         </div>
                         <div>
                             <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">Omschrijving werkzaamheden *</label>
-                            <textarea rows="4" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm" placeholder="Wat is de situatie? (Bijv. Lekkage na storm, dakkapel isoleren, etc.)"></textarea>
+                            <textarea name="message" rows="4" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm" placeholder="Wat is de situatie? (Bijv. Lekkage na storm, dakkapel isoleren, etc.)"></textarea>
                         </div>
-                        <button type="submit" class="w-full py-3.5 rounded-xl font-black text-sm tracking-[0.15em] transition-all bg-brand-accent hover:bg-brand-accentHover text-brand-dark active:scale-95 shadow-lg shadow-brand-accent/25">
-                            AANVRAAG VERZENDEN
+                        <button type="submit" 
+                                :disabled="submitting"
+                                class="w-full py-3.5 rounded-xl font-black text-sm tracking-[0.15em] transition-all bg-brand-accent hover:bg-brand-accentHover text-brand-dark active:scale-95 shadow-lg shadow-brand-accent/25 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span x-show="!submitting">AANVRAAG VERZENDEN</span>
+                            <span x-show="submitting" class="flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-spinner animate-spin"></i> BEZIG MET VERZENDEN...
+                            </span>
                         </button>
                     </form>
                 </div>
