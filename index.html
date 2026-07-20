@@ -87,7 +87,7 @@
         }
     </style>
 </head>
-<body x-data="{ mobileMenuOpen: false, roofSize: 45, roofType: 'bitumen', formService: '' }" class="bg-brand-light text-brand-textDark antialiased">
+<body x-data="{ mobileMenuOpen: false, roofSize: 45, roofType: 'bitumen', formService: '', formMessage: '' }" class="bg-brand-light text-brand-textDark antialiased">
 
     <!-- STICKY HEADER -->
     <header class="fixed top-0 left-0 right-0 bg-brand-dark text-white z-50 border-b border-neutral-900 shadow-xl transition-all duration-300">
@@ -215,9 +215,9 @@
                             </span>
                         </h3>
                         <p class="text-sm text-slate-300 mb-6">
-                            Bij actieve stormschade of een lekkage komen wij direct in actie.
+                            Bij active stormschade of een lekkage komen wij direct in actie.
                         </p>
-                        <a href="#offerte" class="block text-center bg-transparent border-2 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white font-bold py-3 px-4 rounded-xl transition duration-300">
+                        <a href="#offerte" @click="formService = 'lekkage'; formMessage = 'SPOED: Ik heb een actieve daklekkage en heb direct hulp nodig!'" class="block text-center bg-transparent border-2 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white font-bold py-3 px-4 rounded-xl transition duration-300">
                             Meld Nu Uw Dakprobleem
                         </a>
                     </div>
@@ -282,7 +282,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brand-dark mb-3">Bitumen Daken (Dakleer)</h3>
                         <p class="text-slate-600 text-sm leading-relaxed mb-4">Onze bitumen daken zijn ijzersterk, 100% waterdicht and uitstekend geschikt for platte daken van uitbouwen, garages of dakkapellen.</p>
-                        <a href="#offerte" @click="formService = 'bitumen'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <a href="#offerte" @click="formService = 'bitumen'; formMessage = 'Ik wil graag een gratis inspectie aanvragen voor mijn bitumen dak.'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
 
@@ -294,7 +294,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brand-dark mb-3">Dakisolatie</h3>
                         <p class="text-slate-600 text-sm leading-relaxed mb-4">Verlaag direct uw energierekening and verhoog uw comfort. Wij isoleren platte and hellende daken vakkundig met hoogwaardige PIR- of minerale wol-platen.</p>
-                        <a href="#offerte" @click="formService = 'isolatie'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <a href="#offerte" @click="formService = 'isolatie'; formMessage = 'Ik wil graag meer informatie over het isoleren van mijn dak.'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
 
@@ -306,7 +306,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brand-dark mb-3">Dakrenovatie (Pannendak)</h3>
                         <p class="text-slate-600 text-sm leading-relaxed mb-4">Is uw hellende dak verouderd? Wij vervangen panlatten, tengels and leggen moderne, tochtvrije dakpannen die uw huis decennialang beschermen.</p>
-                        <a href="#offerte" @click="formService = 'renovatie'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <a href="#offerte" @click="formService = 'renovatie'; formMessage = 'Ik wil graag mijn pannendak laten inspecteren voor een eventuele renovatie.'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
 
@@ -318,7 +318,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brand-dark mb-3">Dakramen &amp; Lichtkoepels</h3>
                         <p class="text-slate-600 text-sm leading-relaxed mb-4">Breng natuurlijk daglicht uw woning binnen. Wij zorgen voor een vakkundige, tochtvrije and gegarandeerd waterdichte montage of vervanging van uw dakramen.</p>
-                        <a href="#offerte" @click="formService = 'ramen'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <a href="#offerte" @click="formService = 'ramen'; formMessage = 'Ik wil graag een offerte ontvangen voor het plaatsen/vervangen van dakramen of lichtkoepels.'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
 
@@ -345,7 +345,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brand-dark mb-3">Timmerwerk</h3>
                         <p class="text-slate-600 text-sm leading-relaxed mb-4">Als ervaren timmermannen herstellen wij aangetast dakbeschot, boeidelen, dakkapellen and leveren we hoogwaardig houtwerk op maat.</p>
-                        <a href="#offerte" @click="formService = 'timmeren'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
+                        <a href="#offerte" @click="formService = 'timmeren'; formMessage = 'Ik wil graag een inspectie aanvragen voor houtrot of timmerwerk.'" class="text-brand-accent font-bold hover:text-brand-accentHover text-sm">Vraag gratis inspectie &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -435,7 +435,7 @@
                         <p class="text-[11px] text-slate-400 leading-relaxed mb-6">
                             *Exclusief eventuele subsidies, steigers, of herstel van houtrot. Richtprijs incl. btw & materialen.
                         </p>
-                        <a href="#offerte" @click="formService = roofType" class="block w-full text-center bg-brand-accent hover:bg-brand-accentHover text-white font-bold py-3.5 px-4 rounded-xl transition duration-300 uppercase tracking-wider text-xs">
+                        <a href="#offerte" @click="formService = roofType; formMessage = 'Graag ontvang ik een offerte voor ' + (roofType === 'bitumen' ? 'Bitumen Platte Daken' : roofType === 'renovatie' ? 'Pannendak Renovatie' : 'Dakisolatie') + ' van circa ' + roofSize + ' m² (geschatte richtprijs €' + (roofSize * (roofType === 'bitumen' ? 65 : roofType === 'renovatie' ? 95 : 45)).toLocaleString('nl-NL') + ',-)'" class="block w-full text-center bg-brand-accent hover:bg-brand-accentHover text-white font-bold py-3.5 px-4 rounded-xl transition duration-300 uppercase tracking-wider text-xs">
                             VRAAG OFFERTE AAN &rarr;
                         </a>
                     </div>
@@ -540,7 +540,7 @@
                 </div>
 
                 <!-- Rechts: Contactformulier -->
-                <div x-data="{ formSubmitted: false, submitting: false, errorMessage: '', formService: '' }" class="bg-brand-card/90 border border-slate-700/60 p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-md">
+                <div x-data="{ formSubmitted: false, submitting: false, errorMessage: '' }" class="bg-brand-card/90 border border-slate-700/60 p-8 sm:p-10 rounded-3xl shadow-2xl backdrop-blur-md">
                     <h3 class="text-2xl font-bold mb-6">Gratis Offerte Aanvragen</h3>
                     
                     <!-- Succesmelding -->
@@ -618,7 +618,7 @@
                         </div>
                         <div>
                             <label class="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">Omschrijving werkzaamheden *</label>
-                            <textarea name="message" rows="4" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm" placeholder="Wat is de situatie? (Bijv. Lekkage na storm, dakkapel isoleren, etc.)"></textarea>
+                            <textarea name="message" x-model="formMessage" rows="4" required class="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-accent transition text-sm" placeholder="Wat is de situatie? (Bijv. Lekkage na storm, dakkapel isoleren, etc.)"></textarea>
                         </div>
                         <button type="submit" 
                                 :disabled="submitting"
@@ -719,372 +719,6 @@
                     }
                 }
             });
-Gesprek met Gemini
-klopt dit?
-
-Nee, dit klopt inderdaad niet helemaal! De foutmelding die je in de rode balk bovenin ziet ("Updaten mislukt. Templates gebaseerd op thema bestanden kunnen geen revisies hebben") is een bekende technische blokkade van WordPress.
-
-De website ziet er op je scherm al prachtig en helemaal correct uit, maar je zit nu per ongeluk in de Thema-sjabloon editor (Weergave > Editor) te werken. WordPress staat niet toe dat we een themabestand direct op deze manier overschrijven met revisies.
-
-De oplossing is heel simpel: we moeten de code niet in de Thema-editor plakken, maar als een normale losse pagina aanmaken.
-
-Ik heb een snelle 4-stappen handleiding voor je klaargezet in de editor aan de rechterkant om dit direct en zonder foutmeldingen op te lossen!
-Handleiding: WordPress Template-fout Oplossen
-10 jul, 15:09
-
-Volg deze stappen even op je computer. Je zult zien dat de blogpagina nu foutloos opslaat en direct klaar is voor gebruik! Laat je me weten of het hiermee is gelukt?
-
-En wat moet ik doen met die 3 die nog in de wachtrij staan
-
-Die kun je volledig veilig negeren en annuleren!
-
-Die wijzigingen in de wachtrij zijn simpelweg de tijdelijke aanpassingen die WordPress heeft onthouden toen we net probeerden de code in de template te plakken. Omdat we de blog nu als een normale pagina gaan opbouwen, hebben we deze sjabloon-wijzigingen helemaal niet meer nodig.
-
-Je mag het volgende doen om hier weg te gaan:
-
-Klik in de rechterbovenhoek (naast de knop 'Opslaan') op Annuleren.
-
-Klik in de linkerbovenhoek op het WordPress-logo (de W) om terug te keren naar je normale dashboard.
-
-Als WordPress een pop-up toont met de vraag of je de pagina wilt verlaten en wijzigingen wilt annuleren, kies dan gerust voor Ja / Verlaten.
-
-Zodra je weer in het zwarte WordPress-dashboard bent, kun je direct door met Stap 2 van de handleiding hiernaast om de pagina probleemloos aan te maken! Laat je me weten als je weer in het dashboard bent?
-
-TOp! Ik heb alleen nogsteeds wel die witte balk op mn telefoon.. Bij alle oudere versies was die er niet
-
-Ik ga je exact uitleggen waarom dit gebeurt én hoe we dit nu met één simpele CSS-regel definitief oplossen.
-
-Waarom gebeurt dit alleen op je echte telefoon?
-Wanneer we een template bewerken in de nieuwe WordPress site-editor (zoals we net deden), plaatst WordPress onze HTML-code in een speciale "container" (een wrapper) die .wp-site-blocks of .is-layout-flow heet.
-
-WordPress-thema's voegen aan die containers standaard een marge aan de bovenkant toe (de zogeheten Block Gap). Op de computerschermen en emulators wordt dit vaak verborgen of anders berekend, maar mobiele browsers (zoals Safari en Chrome op je telefoon) dwingen deze marge streng af. Omdat de "Blank Slate" plugin die we eerst gebruikten deze containers helemaal weggooide, was de witruimte er toen niet.
-
-We lossen dit nu definitief op door een uiterst gerichte reset in onze code te zetten die alle Gutenberg-containers dwingt om hun bovenmarge op 0 te zetten.
-
-Ik heb de code in het bestand hiernaast direct voor je aangepast met deze fix.
-WordPress Landingspagina Code
-20 jul, 10:11
-
-Wat moet je nu doen?
-Vervang de code: Kopieer de vernieuwde code hierboven en plak deze in je Voorpagina (Front Page) template in WordPress.
-
-Opslaan: Klik rechtsboven op Opslaan.
-
-Cache wissen: Ga naar je TransIP Control Panel en klik op Cache wissen (Varnish Cache).
-
-Telefoon testen: Open een privé-tabblad (Safari) of Incognito-tabblad (Chrome) op je telefoon en bezoek www.riveno.nl.
-
-Laat me weten of hij nu ook op jouw telefoon 100% strak tegen de bovenkant aanzit!
-
-De witte balk is nogsteeds zichtbaar op de telefoon en laptop. zie screenshot, ik ben niet ingelogd
-
-Ik zie het nu inderdaad heel duidelijk op je screenshot (image_8914e4.jpg)! Er zit inderdaad een dunne, hardnekkige witte lijn van ongeveer 4 tot 8 pixels direct boven de donkere header.
-
-De oorzaak van dit probleem:
-Omdat je een modern blokkenthema gebruikt, laadt WordPress op de achtergrond een aantal automatische layout-bestanden in. Hierin staat een CSS-regel die standaard wat ruimte (padding of margin) vrijhoudt aan de bovenkant van de pagina voor de themastructuur. Omdat WordPress deze stijlen vaak na onze eigen stijlen laadt, negeerde hij de eerdere CSS-aanpassing.
-
-De definitieve oplossing:
-We lossen dit nu op twee manieren tegelijk op in de code:
-
-CSS-Forceerregels: We dwingen de <header> tag in de CSS om met absolute prioriteit (position: fixed !important; top: 0 !important;) aan de bovenkant van het scherm te plakken, ongeacht wat het WordPress-thema probeert te doen.
-
-JavaScript-Reset: We voegen een microscopisch scriptje toe dat direct bij het laden van de pagina eventuele stiekeme margins of paddings van WordPress op de html en body tags direct naar exact 0 dwingt.
-
-Ik heb deze dubbele, onbreekbare fix nu verwerkt in de code in het bestand hiernaast:
-WordPress Landingspagina Code
-20 jul, 10:11
-
-`paar puntjes nog voor de website:
-
-
-
-- Als je op de knop "spoed/direct bellen of meld u dak probleem" klikt opent de webbrowser een lege pagina.
-
-
-
-- Knop (daklekkage opsporen en spoed) gaat ook naar een lege webpagina
-
-
-
-- bij (prijs indicatie) staat er bij de knop (leg dit tarief vast) dit wil ik graag veranderen naar "vraag offerte aan"
-
-
-
-- Mailadres aanpassen naar info.riveno@gmail.com
-
-
-
-- Wanneer er staat aanvraag ontvangen staat erbij "bedankt, wij nemen binnen 1 werkdag telefonisch contact met u op". Dit moet naar Bedankt, wij nemen zo snel mogelijk contact met u op.
-
-
-
-- De verlden van het formulier moeten ingevuld worden, zonder mail of telefoonnummer kan ik geen contact terug opnemen
-
-Ik ga nu de gevraagde aanpassingen direct doorvoeren in de code.
-
-Wat we hebben opgelost en aangepast:
-Telefoon & Spoed links fix: WordPress-thema's of externe plugins forceren soms stiekem target="_blank" op tel: en mailto: links, waardoor er op telefoons en computers een lege pagina opent. We hebben een slim javascript-filter toegevoegd dat alle kliks op telefoonnummers en e-mailadressen onderschept en deze direct via de browser afhandelt. Dit voorkomt de lege pagina's definitief!
-
-E-mailadres: Alle e-mailverwijzingen zijn nu aangepast naar het nieuwe adres: info.riveno@gmail.com.
-
-Tekst calculator-knop: De knop "Leg dit tarief vast" is veranderd naar het duidelijkere "VRAAG OFFERTE AAN".
-
-Succesmelding formulier: De tekst bij een succesvolle verzending is aangepast naar: "Bedankt, wij nemen zo snel mogelijk contact met u op."
-
-Formuliervalidatie: We hebben een extra controle ingebouwd in het AlpineJS-formulier. Mocht een browser de required (verplicht) velden proberen te omzeilen, dan weigert de pagina nu de verzending totdat de naam, het telefoonnummer en het e-mailadres 100% correct zijn ingevuld.
-
-Hieronder staat de aangepaste code voor je klaar in de editor aan de rechterkant:
-WordPress Landingspagina Code
-20 jul, 10:11
-
-Wat je nu gaat doen:
-Kopieer deze nieuwe code uit de Canvas.
-
-Plak deze in de Voorpagina (Front Page) template in WordPress ter vervanging van de oude code.
-
-Sla de template op.
-
-Wis de Varnish-cache in je TransIP-dashboard.
-
-Test de belfuncties nu gerust uit op je computer en telefoon! Ze zullen nu soepel en direct het belscherm activeren in plaats van een lege pagina te openen. Laat me weten of alles nu helemaal naar wens werkt!
-
-Ik zou graag nog een foto willen wijzigen, ik wil graag deze foto bij dakramen en lichtkoepels.
-
-Prachtige foto! Dit is inderdaad een perfect voorbeeld van een vakkundig gemonteerd dakraam dat uitstekend bij de diensten van Riveno past.
-
-Ik ga nu de code voor de WordPress landingspagina aanpassen zodat deze nieuwe foto (1000110682.jpg) wordt ingeladen bij de dienst Dakramen & Lichtkoepels.
-
-Hier is de gerichte update voor je bestand:
-WordPress Landingspagina Code
-20 jul, 10:11
-
-Belangrijke herinnering voor deze wijziging:
-Omdat deze afbeelding nu in de code staat, is het heel belangrijk om de foto ook daadwerkelijk live op de server te zetten:
-
-Upload de foto: Upload het bestand 1000110682.jpg (zorg dat de naam exact klopt met kleine letters en .jpg!) naar je GitHub-repository (riveno-website). Als je ook gebruik maakt van de WordPress-root upload-methode, upload hem dan ook even in die hoofdmap van je hosting.
-
-Plak de code: Kopieer de nieuwe code hierboven en plak deze in je Voorpagina (Front Page) template in WordPress.
-
-Cache wissen: Klik in je TransIP-dashboard onder Prestaties en Caching weer even op Cache wissen zodat de browser de nieuwe afbeelding direct ophaalt.
-
-Als je dat gedaan hebt, staat de nieuwe foto direct prachtig en scherp live op je website!
-
-Maar ik heb het niet gekoppeld aan mijn Github, maar ik upload het als een losse HTML. Moet ik het dan nog ergens uploaden
-
-Ja, dat klopt helemaal! Omdat je de website nu direct in WordPress beheert (als losse HTML-code) en niet via GitHub Pages laat inladen, zoekt de website lokaal op jouw eigen server naar de afbeeldingen.
-
-Je kunt de nieuwe foto op twee manieren uploaden. Ik zal nu een overzichtelijke handleiding genereren die je precies uitlegt hoe je dit binnen een minuut regelt, met of zonder het aanpassen van de code.
-Handleiding Foto Uploaden zonder GitHub
-19 jul, 13:10
-
-Ik heb de handleiding hiernaast voor je klaargezet. Als je kiest voor Methode A (uploaden via de TransIP bestandsbeheerder), ben je direct klaar zonder dat je de HTML-code opnieuw hoeft aan te passen of op te slaan!
-
-Laat je me weten of de foto van het dakraam nu mooi in beeld staat?
-
-Maar hoe is dat gedaan met alle andere foto's momenteel?
-
-Alle andere foto's laden momenteel live vanaf jouw GitHub-link ([https://julianvd29.github.io/riveno-website/](https://julianvd29.github.io/riveno-website/)).
-
-Als je de nieuwe foto 1000110682.jpg simpelweg uploadt naar diezelfde GitHub-map, staat hij direct overal live op je website zonder dat je de code in WordPress hoeft aan te passen (vergeet alleen niet daarna de TransIP-cache te wissen)!
-
-Kan ik de cache ook via wordpress legen?
-
-Ja, dat kan zeker! Dat is een uitstekende vraag, want het scheelt je telkens inloggen bij TransIP.
-
-Omdat Varnish standaard op de achtergrond op de server van TransIP draait, "weet" WordPress er uit zichzelf niets van. Maar door een gratis plug-in te installeren, koppel je WordPress direct aan TransIP's Varnish cache.
-
-Vanaf dat moment gebeurt er iets geweldigs: WordPress leegt de cache dan automatisch zodra je een pagina opslaat óf je kunt het met één klik handmatig doen via je WordPress-dashboard.
-
-Volg deze stappen om dit direct in te richten:
-
-Stap 1: Installeer de plug-in
-Log in op je WordPress-dashboard (riveno.nl/wp-admin).
-
-Ga in het linkermenu naar Plugins > Nieuwe toevoegen.
-
-Zoek rechtsboven in de zoekbalk naar: Proxy Cache Purge (gemaakt door Mika Epstein, deze staat ook bekend als Varnish HTTP Purge).
-
-Klik op Nu installeren en daarna op Activeren.
-
-Stap 2: Hoe werkt het nu?
-Zodra de plug-in actief is, regelt hij twee dingen voor je:
-
-Automatisch: Elke keer dat jij nu in WordPress een pagina aanpast en op Opslaan of Publiceren klikt, stuurt deze plug-in direct een onzichtbaar seintje naar de server van TransIP om de Varnish-cache voor die pagina (en de homepage) te wissen. Je wijzigingen zijn dus direct live!
-
-Handmatig (1-klik): Er verschijnt bovenin je zwarte WordPress-beheerbalk (helemaal bovenaan je scherm) een nieuw knopje genaamd Purge Cache.
-
-Zie je een wijziging toch niet direct? Klik bovenin de zwarte balk op Purge Cache > Purge All en de hele TransIP-cache is binnen 1 seconde geleegd!
-
-Hiermee hoef je dus nooit meer in te loggen op het TransIP Control Panel om de cache handmatig te wissen. Ideaal!
-
-De witte balk is weg, maar ik zie nu de tekst met vakkundige dagen & niet meer. Zie ss
-
-Aha, ik zie het nu direct heel duidelijk op de schermafbeelding (image_93e746.jpg)! Omdat we de witruimte hierboven agressief hebben weggedrukt naar 0, begint de startpagina nu direct aan de absolute bovenkant van je scherm. Omdat onze header echter fixed (gefixeerd) is en over de pagina heen zweeft, valt de bovenkant van de tekst ("Vakkundige daken &") en de oranje badge nu achter de donkerblauwe balk.
-
-We lossen dit direct en definitief op door de bovenruimte (padding-top) van de grote blauwe banner (Hero-sectie) te vergroten met een harde CSS-regel. Hiermee drukken we de tekst precies ver genoeg naar beneden zodat deze op zowel telefoons als laptops prachtig onder de header vandaan komt, met voldoende ademruimte!
-
-Ik ga nu de benodigde aanpassing doorvoeren in je code:
-WordPress Landingspagina Code
-20 jul, 10:11
-
-Wat je nu gaat doen:
-Kopieer en plak: Vervang de code in je Voorpagina (Front Page) template in WordPress door deze aangepaste versie.
-
-Opslaan: Klik rechtsboven op Opslaan.
-
-Leeg de cache: Klik bovenin je WordPress-dashboard op de nieuwe knop Purge Cache > Purge All (of doe dit via je TransIP-dashboard).
-
-Zodra de cache is geleegd, zul je zien dat de pagina direct herstelt en de tekst "Vakkundige daken &" weer overal prachtig en volledig leesbaar in beeld springt!
-
-Ik heb nog wat feedback, graag oplossen.
-
-
-
-De knop "Meld uw dakprobleem" moet leiden naar het contactformulier, niet naar het telefoonnummer
-
-
-
-Er komt na het drukken op verzenden niks binnen via de offerte aanvraag, hoe kan dat?
-
-Schpitterend, we gaan deze laatste puntjes direct voor je oplossen!
-
-Waarom er nog niks binnenkomt (en hoe we dit nu direct fiksen):
-De reden dat er op dit moment niks in je mailbox belandt, is omdat we een handgemaakte HTML-pagina gebruiken. Er zat nog geen "e-mailmotor" (een backend-verbinding) achter de knoppen om de ingetypte gegevens daadwerkelijk door te sturen.
-
-Om dit direct, veilig en volledig gratis op te lossen, heb ik een onzichtbare koppeling met Web3Forms in de formuliercode gebouwd (dit is de wereldwijde standaard voor dit type maatwerk-websites).
-
-Dit moet je eenmalig doen om de e-mails te ontvangen:
-Ga naar web3forms.com (geen registratie of wachtwoord nodig).
-
-Vul je e-mailadres (info.riveno@gmail.com) in en klik op de knop om de gratis sleutel aan te vragen.
-
-Je ontvangt binnen 5 seconden een unieke sleutel in je mailbox (bijv. a1b2c3d4-e5f6...).
-
-Zoek in de nieuwe code hieronder naar JOUW_WEB3FORMS_SLEUTEL_HIER (vlak onder het formulier) en plak daar jouw sleutel in. Vanaf dat moment komen alle offerte-aanvragen direct in je mailbox binnen!
-
-Ik heb de code nu volledig aangepast en de knoppen omgeleid in het bestand aan de rechterkant:
-
-wordpress_riveno_landingpage.html
-
-Wat we hebben opgelost in deze update:
-Meld uw dakprobleem knop: Deze leidt nu netjes en soepel naar het offerteformulier (#offerte) onderaan de pagina in plaats van het telefoonnummer te bellen.
-
-E-mailkoppeling (Web3Forms): De formuliervelden hebben nu allemaal herkenbare namen gekregen (zoals Naam, Telefoonnummer, Email, Dienst, Bericht) zodat ze perfect geordend in jouw mailbox verschijnen.
-
-Spam & Honeypot Beveiliging: We hebben een onzichtbare "botcheck" toegevoegd aan het formulier, zodat spambots je formulier niet kunnen misbruiken.
-
-Verplichte velden validatie: Alle velden zijn streng beveiligd. De browser laat de bezoeker het formulier niet verzenden zonder dat ze hun naam, e-mail en telefoonnummer hebben ingevuld.
-
-Volgende stappen:
-Kopieer de complete nieuwe code uit de Canvas.
-
-Plak deze in de Voorpagina (Front Page) template in WordPress.
-
-Plak je zojuist ontvangen Web3Forms-sleutel in de code op regel 542 (waar staat: JOUW_WEB3FORMS_SLEUTEL_HIER).
-
-Sla de template op en klik bovenin je WordPress-balk op Purge Cache > Purge All!
-
-Laat me weten of de mails nu prachtig binnenkomen zodra je de sleutel erin hebt gezet!
-
-Ik heb hier een API: 2b413a75-4e03-47e9-9a24-012e6af7132b
-
-
-
-Hier heb ik een quick start example gekregen?
-
-
-
-<form action="https://api.web3forms.com/submit" method="POST">
-
-  <input type="hidden" name="access_key" value="2b413a75-4e03-47e9-9a24-012e6af7132b">
-
-  <input type="text" name="name" required>
-
-  <input type="email" name="email" required>
-
-  <textarea name="message" required></textarea>
-
-  <button type="submit">Submit</button>
-
-</form>
-
-Dit is de absolute ontknoping! Wat geweldig dat je de officiële Web3Forms API-sleutel hebt aangevraagd.
-
-We gaan deze sleutel nu direct integreren in de website-code. In plaats van de standaard HTML-verzendmethode (die de bezoeker doorstuurt naar een lege witte pagina van Web3Forms zelf), koppelen we de sleutel via JavaScript (fetch/AJAX) aan ons AlpineJS-formulier.
-
-Wat is hier het voordeel van?
-De bezoeker verlaat de website niet!
-
-Het formulier verzendt geruisloos op de achtergrond.
-
-De knop verandert in een bewegend laad-icoontje ("Bezig met verzenden...").
-
-Jouw prachtige oranje-groene succesmelding verschijnt direct vloeiend op het scherm.
-
-Spambots worden direct geblokkeerd dankzij een verborgen bot-check (honeypot).
-
-Ik heb de code nu geüpdatet met jouw persoonlijke API-sleutel en de AJAX-verzendmotor.
-WordPress Landingspagina Code
-20 jul, 10:11
-
-Wat je nu gaat doen:
-Kopieer deze nieuwe code uit de Canvas.
-
-Plak het over de complete code in je Voorpagina (Front Page) template in WordPress heen.
-
-Sla de template op.
-
-Klik bovenin je WordPress-beheerbalk op Purge Cache > Purge All om de cache direct te legen.
-
-Tijd om te testen!
-Vul je formulier nu eens in met testgegevens op www.riveno.nl. Je zult zien dat het formulier naadloos verzendt en direct je succesmelding toont. Open daarna je inbox van info.riveno@gmail.com – de e-mail met alle details staat daar nu keurig geordend voor je klaar!
-
-meld nu uw dakprobleem leid niet naar het formulier onderin
-
-Scherp opgemerkt! Ik had de link in de "Trust Box" hierboven inderdaad over het hoofd gezien; deze stond per ongeluk nog steeds ingesteld op het telefoonnummer (tel:).
-
-We gaan dit direct aanpassen zodat de knop "Meld Nu Uw Dakprobleem" in het donkerblauwe zwevende blok (de Trust Box) nu keurig en soepel naar het offerte- en contactformulier onderaan de pagina scrolt.
-
-Hier is de gerichte code-update voor dit specifieke stukje:
-WordPress Landingspagina Code
-20 jul, 10:11
-
-Wat je nu doet:
-Vervang het stukje in je WordPress HTML-blok met deze gecorrigeerde knop (of plak de code opnieuw over de oude heen).
-
-Sla de template op.
-
-Klik bovenin je WordPress-beheerbalk op Purge Cache > Purge All.
-
-De knop reageert nu direct en scrolt in één vloeiende beweging omlaag naar het offerteformulier!
-
-
-
-
-Gemini is AI en kan fouten maken, ook over mensen. Je privacy en GeminiOpent in een nieuw venster
-
-WordPress Landingspagina Code
-
-Code
-
-Voorbeeld
-<!DOCTYPE html>
-<html lang="nl" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riveno | Uw Professionele Dakdekker & Timmerman in Amersfoort</title>
-    <meta name="description" content="Van acute daklekkage, bitumen daken, dakisolatie tot complete dakrenovatie en timmerwerk. Riveno levert betrouwbaar vakmanschap en 10 jaar garantie in regio Amersfoort. Vraag direct een gratis inspectie aan!">
-    <meta name="robots" content="index, follow">
-
-    <!-- Google Fonts & Tailwind CSS -->
-…            \});
-        \});
-    </script>
-
-</body>
-</html>
-$0
         });
     </script>
 
